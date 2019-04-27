@@ -56,6 +56,16 @@ public class MultiThreadedServer implements Runnable {
             Client client = new Client(clientSocket);
             //Start the Client thread.
             new Thread(client).start();
+
+            try {
+                if (clientSocket.getInputStream() != null) {
+                    clientSocket.getOutputStream().write("got it".getBytes());
+                }
+            }
+            catch(IOException e) {
+                e.printStackTrace();
+            }
+
         }
     }
 
